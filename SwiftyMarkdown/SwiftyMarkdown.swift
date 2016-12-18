@@ -253,7 +253,7 @@ public class SwiftyMarkdown {
 			scanner.scanCharactersFromSet(linkCharacters, intoString: nil)
 			
 			
-			if let hasLink = linkText, hasURL = linkURL {
+			if let hasLink = linkText, let hasURL = linkURL {
 				followingString = hasLink as String
 				attributes[NSLinkAttributeName] = hasURL as String
 			} else {
@@ -390,12 +390,14 @@ public class SwiftyMarkdown {
 		
 		let finalFontDescriptor = finalFont.fontDescriptor()
 		if style == .Italic {
-			let italicDescriptor = finalFontDescriptor.fontDescriptorWithSymbolicTraits(.TraitItalic)
-			finalFont = UIFont(descriptor: italicDescriptor, size: styleSize)
+            if let italicDescriptor = finalFontDescriptor.fontDescriptorWithSymbolicTraits(.TraitItalic) {
+                finalFont = UIFont(descriptor: italicDescriptor, size: styleSize)
+            }
 		}
 		if style == .Bold {
-			let boldDescriptor = finalFontDescriptor.fontDescriptorWithSymbolicTraits(.TraitBold)
-			finalFont = UIFont(descriptor: boldDescriptor, size: styleSize)
+            if let boldDescriptor = finalFontDescriptor.fontDescriptorWithSymbolicTraits(.TraitBold) {
+                finalFont = UIFont(descriptor: boldDescriptor, size: styleSize)
+            }
 		}
 		
 		
